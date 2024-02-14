@@ -1,3 +1,5 @@
+using MovieApp.Data;
+
 namespace MovieApp
 {
     public class Program
@@ -5,6 +7,10 @@ namespace MovieApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //Dbcontext configuration
+            builder.Services.AddDbContext<AppDbContext>();
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

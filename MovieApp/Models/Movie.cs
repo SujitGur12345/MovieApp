@@ -1,5 +1,6 @@
-﻿using MovieApp.Data;
+﻿using MovieApp.Data.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieApp.Models
 {
@@ -21,5 +22,25 @@ namespace MovieApp.Models
         public DateTime EndDate { get; set; }
 
         public MovieCategory MovieCategory { get; set; }
+
+
+        //Relationship Join of Actor & Movies as It is Many to Many Relationship 
+        public List<Actor_Movie> Actor_Movies { get; set; }
+
+
+        //Cinema as it One to Many Relation
+        public int CinemaID { get; set; }
+        [ForeignKey("CinemaID")]
+
+        public Cinema Cinema { get; set; }
+
+
+        //Producer as it One to Many Relation
+        public int ProducerID { get; set; }
+        [ForeignKey("ProducerID")]
+
+
+        public Producer Producer { get; set; }
+
     }
 }

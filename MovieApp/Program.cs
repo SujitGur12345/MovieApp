@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using MovieApp.Data;
+using System.Configuration;
 
 namespace MovieApp
 {
@@ -8,8 +10,15 @@ namespace MovieApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //Dbcontext configuration
-            builder.Services.AddDbContext<AppDbContext>();
+            //Setting Configuration for Getting Connection String
+            // Configuration
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(builder.Environment.ContentRootPath)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            //Dbcontext configuration For SQl Server
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
 
             // Add services to the container.

@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MovieApp.Data;
 using System.Configuration;
+using System.Data;
+using System.Security.Policy;
 
 namespace MovieApp
 {
@@ -41,11 +44,16 @@ namespace MovieApp
 
             app.UseAuthorization();
 
+
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+
+            AppDbInitializer.Seed(app);
+
+
         }
     }
 }

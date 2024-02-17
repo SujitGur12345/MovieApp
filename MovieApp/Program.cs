@@ -51,8 +51,8 @@ namespace MovieApp
 
             app.Run();
 
+            //Initializing the Database
             AppDbInitializer.Seed(app);
-
 
         }
     }
